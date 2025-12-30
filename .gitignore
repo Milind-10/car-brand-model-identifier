@@ -1,0 +1,13 @@
+# Virtual environment
+carenv/
+__pycache__/
+.ipynb_checkpoints/
+
+# Datasets (DO NOT PUSH)
+dataset/Stanford_Car_data/
+dataset/processed/
+notebooks/dataset/processed/
+
+# Editor / OS
+.vscode/
+.DS_Store
