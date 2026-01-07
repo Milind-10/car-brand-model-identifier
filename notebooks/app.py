@@ -33,12 +33,12 @@ model = load_car_model()
 
 #Load class names
 
-TRAIN_DIR = Path("dataset/processed/train")
+@st.cache_resource
+def load_class_names():
+    with open("class_names.txt", "r") as f:
+        return [line.strip() for line in f.readlines()]
 
-class_names = sorted([
-    d.name for d in TRAIN_DIR.iterdir() if d.is_dir()
-])
-
+class_names = load_class_names()
 NUM_CLASSES = len(class_names)
 st.caption(f"Model trained on {NUM_CLASSES} car models")
 
@@ -84,6 +84,6 @@ if uploaded_file:
     st.subheader("🔍 Top Predictions")
 
     for i, pred in enumerate(predictions,start=1):
-        st.write(
-            f"**{i}. {pred["label"]}** - {pred["confidence"]*100: .2f}%"
-        )
+       st.write(
+             f"**{i}. {pred['label']}** - {pred['confidence']*100:.2f}%"
+            )
