@@ -7,6 +7,7 @@ __pycache__/
 dataset/Stanford_Car_data/
 dataset/processed/
 notebooks/dataset/processed/
+models/car_model_efficientnet.h5
 
 # Editor / OS
 .vscode/

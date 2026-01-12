@@ -1,10 +1,10 @@
 import streamlit as st
 import numpy as np 
 from pathlib import Path
-from tensorflow.keras.models import load_model
-from tensorflow.keras.preprocessing import image
-from tensorflow.keras.applications.efficientnet import preprocess_input
 
+from tensorflow.keras.preprocessing import image
+from utils.model_loader import load_car_model, load_class_names
+from utils.inference import predict_top_k
 
 
 
@@ -18,53 +18,15 @@ st.title("🚗 Car Brand & Model Identifier")
 st.write("Upload a car image to identify its **Brand and Model**. ")
 
 
-
-
-#Load the model
-
 @st.cache_resource
-def load_car_model():
-    return load_model("car_model_efficientnet.keras")
+def load_resources():
+   model = load_car_model()
+   class_names = load_class_names()
+   return model, class_names 
 
-model = load_car_model()
+model, class_names = load_resources()
 
-
-
-
-#Load class names
-
-@st.cache_resource
-def load_class_names():
-    with open("class_names.txt", "r") as f:
-        return [line.strip() for line in f.readlines()]
-
-class_names = load_class_names()
-NUM_CLASSES = len(class_names)
-st.caption(f"Model trained on {NUM_CLASSES} car models")
-
-
-
-
-#Prediction function
-
-def predict_top_k(img, k=3):
-    img = img.resize((224,224))
-    img_arr = image.img_to_array(img)
-    img_arr = np.expand_dims(img_arr, axis=0)
-    img_arr = preprocess_input(img_arr)
-
-    preds = model.predict(img_arr)[0]
-    top_idices = preds.argsort()[-k:][::-1]
-    results = []
-
-    for idx in top_idices:
-        results.append({
-             "label": class_names[idx],
-             "confidence": float(preds[idx]) 
-        })
-    return results
-    
-
+st.caption(f"Model trained on {len(class_names)} car models")
 
 
 #File Upload and Prediction UI
@@ -79,7 +41,7 @@ if uploaded_file:
     st.image(img, caption="Uploaded Image", use_column_width=True)
 
     with st.spinner("Analyzing image..."):
-        predictions = predict_top_k(img, k=3)
+        predictions = predict_top_k(img,model,class_names, k=3)
 
     st.subheader("🔍 Top Predictions")
 
