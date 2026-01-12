@@ -4,35 +4,6 @@ from pathlib import Path
 from tensorflow.keras.models import load_model
 from tensorflow.keras.preprocessing import image
 from tensorflow.keras.applications.efficientnet import preprocess_input
-from ultralytics import YOLO
-
-#Load yolo model
-
-@st.cache_resource
-def load_yolo():
-    return YOLO("yolov8n.pt")
-
-yolo_model = load_yolo
-
-
-
-
-#Car or not verification
-
-def detect_car(img, conf_threshold=0.4):
-    results = yolo_model(img)
-
-    for r in results:
-        for box in r.boxes:
-            cls = int(box.cls[0])
-            conf = float(box.conf[0])
-
-            label = yolo_model.names[cls]
-
-            if label == "car" and conf > conf_threshold:
-                return True, conf
-    return False, None
-
 
 
 
@@ -108,15 +79,6 @@ if uploaded_file:
     st.image(img, caption="Uploaded Image", use_column_width=True)
 
     with st.spinner("Analyzing image..."):
-        is_car , car_conf = detect_car(img)
-
-    if not is_car:
-        st.error("No car detected in this image")
-        st.stop()
-
-    st.success(f"Car detected (confidence: {car_conf*100:.2f}%)")
-
-    with st.spinner("Identifying Car..."):
         predictions = predict_top_k(img, k=3)
 
     st.subheader("🔍 Top Predictions")
