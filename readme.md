@@ -16,7 +16,7 @@ A deep learning web application that identifies the **brand and model of a car**
 - Input Size: 224×224 RGB images
 
 ## 🚀 Live Demo
-👉 **[Click here to try the app](YOUR_HF_LINK_HERE)**
+👉 **https://milind-pandya-car-brand-model-identifier.streamlit.app**
 
 ## ⚠️ Limitations
 - Model is trained only on car images
