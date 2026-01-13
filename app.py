@@ -1,7 +1,7 @@
 import streamlit as st
 import numpy as np 
 from pathlib import Path
-
+from utils.car_detector import contain_cars
 from tensorflow.keras.preprocessing import image
 from utils.model_loader import load_car_model, load_class_names
 from utils.inference import predict_top_k
@@ -39,6 +39,11 @@ uploaded_file = st.file_uploader(
 if uploaded_file:
     img = image.load_img(uploaded_file)
     st.image(img, caption="Uploaded Image", use_column_width=True)
+
+    with st.spinner("Checking if this image contains a Car..."):
+        if not contain_cars():
+            st.error("No car detected")
+            st.stop()
 
     with st.spinner("Analyzing image..."):
         predictions = predict_top_k(img,model,class_names, k=3)
