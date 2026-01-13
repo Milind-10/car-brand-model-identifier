@@ -41,9 +41,10 @@ if uploaded_file:
     st.image(img, caption="Uploaded Image", use_column_width=True)
 
     with st.spinner("Checking if this image contains a Car..."):
-        if not contain_cars():
+        if not contain_cars(img):
             st.error("No car detected")
             st.stop()
+
 
     with st.spinner("Analyzing image..."):
         predictions = predict_top_k(img,model,class_names, k=3)
