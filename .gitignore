@@ -8,6 +8,9 @@ dataset/Stanford_Car_data/
 dataset/processed/
 notebooks/dataset/processed/
 models/car_model_efficientnet.h5
+*.pt
+utils/car_detector.py
+
 
 # Editor / OS
 .vscode/
