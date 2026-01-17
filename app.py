@@ -38,7 +38,7 @@ uploaded_file = st.file_uploader(
 
 if uploaded_file:
     img = image.load_img(uploaded_file)
-    st.image(img, caption="Uploaded Image", use_column_width=True)
+    st.image(img, caption="Uploaded Image", use_container_width=True)
 
  
 
