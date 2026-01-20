@@ -4,12 +4,12 @@ __pycache__/
 .ipynb_checkpoints/
 
 # Datasets (DO NOT PUSH)
-dataset/Stanford_Car_data/
-dataset/processed/
+dataset
 notebooks/dataset/processed/
 models/car_model_efficientnet.h5
 *.pt
 utils/car_detector.py
+scripts
 
 
 # Editor / OS
