@@ -4,7 +4,7 @@ from pathlib import Path
 
 
 BASE_DIR = Path(__file__).resolve().parent.parent
-MODEL_PATH = BASE_DIR / "models" / "car_model_efficientnet.keras"
+MODEL_PATH = BASE_DIR / "models" / "car_model_efficientnet_V2-2.keras"
 CLASS_NAMES_PATH = BASE_DIR / "models" / "class_names.txt"
 
 

@@ -193,4 +193,10 @@ Volkswagen Golf Hatchback 2012
 Volvo 240 Sedan 1993
 Volvo C30 Hatchback 2012
 Volvo XC90 SUV 2007
+mahindra _ thar
+mahindra _ xuv700
+maruti_suzuki _ baleno
+maruti_suzuki _ swift
 smart fortwo Convertible 2012
+tata _ nexon
+tata _ punch
