@@ -11,6 +11,7 @@ models/car_not_car_detector.h5
 *.pt
 utils/car_detector.py
 scripts
+models/car_metadata.json 
 
 
 # Editor / OS
